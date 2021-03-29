@@ -200,11 +200,11 @@ Project Link: [https://github.com/your_username/repo_name](https://github.com/yo
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/doctypehuman/Best-README-Template.svg?style=for-the-badge
-[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
+[contributors-url]: https://github.com/doctypehuman/sql/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/doctypehuman/Best-README-Template.svg?style=for-the-badge
 [forks-url]: https://github.com/doctypehuman/Best-README-Template/network/members
 [stars-shield]: https://img.shields.io/github/stars/doctypehuman/Best-README-Template.svg?style=for-the-badge
-[stars-url]: https://github.com/doctypehumanBest-README-Template/stargazers
+[stars-url]: https://github.com/doctypehuman/sql/stargazers
 [issues-shield]: https://img.shields.io/github/issues/doctypehuman/Best-README-Template.svg?style=for-the-badge
 [issues-url]: https://github.com/doctypehuman/Best-README-Template/issues
 [license-shield]: https://img.shields.io/github/license/doctypehuman/Best-README-Template.svg?style=for-the-badge
