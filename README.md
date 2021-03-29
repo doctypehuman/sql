@@ -202,13 +202,13 @@ Project Link: [https://github.com/your_username/repo_name](https://github.com/yo
 [contributors-shield]: https://img.shields.io/github/contributors/doctypehuman/Best-README-Template.svg?style=for-the-badge
 [contributors-url]: https://github.com/doctypehuman/sql/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/doctypehuman/Best-README-Template.svg?style=for-the-badge
-[forks-url]: https://github.com/doctypehuman/Best-README-Template/network/members
+[forks-url]: https://github.com/doctypehuman/sql/network/members
 [stars-shield]: https://img.shields.io/github/stars/doctypehuman/Best-README-Template.svg?style=for-the-badge
 [stars-url]: https://github.com/doctypehuman/sql/stargazers
 [issues-shield]: https://img.shields.io/github/issues/doctypehuman/Best-README-Template.svg?style=for-the-badge
-[issues-url]: https://github.com/doctypehuman/Best-README-Template/issues
+[issues-url]: https://github.com/doctypehuman/sql/issues
 [license-shield]: https://img.shields.io/github/license/doctypehuman/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/doctypehuman/Best-README-Template/blob/master/LICENSE.txt
+[license-url]: https://github.com/doctypehuman/sql/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/
 [product-screenshot]: images/screenshot.png
