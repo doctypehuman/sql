@@ -27,8 +27,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="1200" height="4000">
+  <a href="https://github.com/doctypehuman/sql">
+    <img src="images/logo.jpeg" alt="Logo" width="1200" height="400">
   </a>
 
   <h3 align="center">Fundamentals Of SQL</h3>
