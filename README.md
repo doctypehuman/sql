@@ -52,10 +52,10 @@
       </ul>
     </li>
     <li>
-	<a href="#Module1">Module 1</a>
+	<a href="#module-1">Module 1</a>
 	<ul>
-	<li><a href="#IntroductionToSQL">Introduction To SQL</a></li>
-	<li><a href="#Syntax">Syntax</a></li>
+	<li><a href="#introduction-to-sql">Introduction To SQL</a></li>
+	<li><a href="#syntax">Syntax</a></li>
 	<li><a href="SQLSELCT">SQL SELECT</a></li>
 	</li>
     <li><a href="#contributing">Contributing</a></li>
@@ -102,7 +102,9 @@ Basic introduction of SQL. It stands for Structured Query Language. In this modu
 
 So we know now what SQL stands for, but what does it do ?? SQL lets you access and manipulate entries in databases. A database is simply put a collection of data. SQL can help you retrieve data, insert data, run queries,create tables, create databases and much more. We will be going over some of the most important abilities below as we progress.
 
-*_SQL IS A STANDARD BUT .. _* SQL became a standard of the American National Institute in 1982 and of the International Standard Organization in 1987 _but_ there are different versions of it. However, in order to be compliant to the ANSI and ISO standards they support at least the major commands such as 
+*_SQL IS A STANDARD BUT_*
+
+SQL became a standard of the American National Institute in 1982 and of the International Standard Organization in 1987 _but_ there are different versions of it. However, in order to be compliant to the ANSI and ISO standards they support at least the major commands such as 
 
 - SELECT
 
