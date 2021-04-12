@@ -58,10 +58,13 @@
 	<li><a href="#syntax">Syntax</a></li>
 	<li><a href="SQLSELCT">SQL SELECT</a></li>
 	</li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
+    <li><a href="#Module-2">Module 2</a></li>
+    <li><a href="#Module-3">Module 3</a></li>
+    <li><a href="#Module-4">Module 4</a></li>
+    <li><a href="#Module-5">Module 5</a></li>
+    <li><a href="#Module-6">Module 6</a></li>
+    <li><a href="#Module-7">Module 7</a></li>
+    <li><a href="#Module-8">Module 8</a></li>
   </ul>
 </details>
 
