@@ -55,11 +55,23 @@
 	<a href="#module-1">Module 1</a>
 	<ul>
 	<li><a href="#introduction-to-sql">Introduction To SQL</a></li>
-	<li><a href="#syntax">Syntax</a></li>
-	<li><a href="SQLSELCT">SQL SELECT</a></li>
+	<li><a href="#Syntax">Syntax</a></li>
+	<li><a href="Select">Select</a></li>
+	<li><a href="Select-Distinct">Select Distinct</a></li>
 	</ul>
     <li><a href="#Module-2">Module 2</a></li>
+	<ul>
+	<li><a href="Where-Clause">Where Clause</a><li>
+	<li><a href="And-Or-Not">And Or Not</a></li>
+	<li><a href="Order-By">Order By</a></li>
+	</ul>
     <li><a href="#Module-3">Module 3</a></li>
+	<ul>
+	<li><a href="Insert-Into-Statement">Insert Into Statement</a></li>
+	<li><a href="Null-Values">Null Values</a></li>
+	<li><a href="Update-Statement">Update Statement</a></li>
+	<li><a href="Delete-Statement">Delete Statement</a></li>
+	</ul>
     <li><a href="#Module-4">Module 4</a></li>
     <li><a href="#Module-5">Module 5</a></li>
     <li><a href="#Module-6">Module 6</a></li>
