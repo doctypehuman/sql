@@ -57,7 +57,7 @@
 	<li><a href="#introduction-to-sql">Introduction To SQL</a></li>
 	<li><a href="#syntax">Syntax</a></li>
 	<li><a href="SQLSELCT">SQL SELECT</a></li>
-	</li>
+	</ul>
     <li><a href="#Module-2">Module 2</a></li>
     <li><a href="#Module-3">Module 3</a></li>
     <li><a href="#Module-4">Module 4</a></li>
