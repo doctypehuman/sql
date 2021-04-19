@@ -85,7 +85,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
- In the process of learning something, it is best if you can reproduce what you learnt. Keeping this mantra in mind, I have decided to share what I have learnt about SQL Fundamentals. The project is broken into modules. Each module has different topics that are covered. I will try to include exercises that I have come across as a reference for you. As of now please consider that to be out of scope. For free exercises you can check out [W3Schools.](www.w3schools.com) That is where I have learnt the basics from. I am passing on all of the information so that you do not have to pay to learn. You might still need to pay for a certificate but if you are just starting out and want to get notes, this project should suffice.
+ In the process of learning something, it is best if you can reproduce what you learnt. Keeping this mantra in mind, I have decided to share what I have learnt about SQL Fundamentals. The project is broken into modules. Each module has different topics that are covered. I will try to include exercises that I have come across as a reference for you. As of now please consider that to be out of scope. For free exercises you can check out [W3Schools.](www.w3schools.com) That is where I have learnt the basics. I am passing on all of the information so that you do not have to pay to learn. You might still need to pay for a certificate but if you are just starting out and want to get notes, this project should suffice.
 
 
 
@@ -185,26 +185,172 @@ Semicolons are used to differentiate multiple SQL statements.
  
 
 
+## Select
+
+Extracting data is the first step and is an important step in databasae management. We need to use the *SELECT* statement to extract data. 
+
+The syntax for a simple Select statement is:
+
+		SELECT coulmn1,column2,...coulmn_N
+		FROM TABLE_NAME;
+
+Here column1, coulmn2 are the field names of the table you want to select data from. If you want to select all data from the table, then the syntax will be:
+
+		SELECT * FROM TABLE_NAME;
+
+
+
+## Select Distinct
+
+At times there can be data that is duplicate in nature i.e it is repeated in the table for example, it could be the name of a country or name of a city. If that is the case and
+we need only the unique ( distinct ) values we need to append the word *distinct* to select. It is done like so
+
+		SELECT DISTINCT Column1 FROM TABLE_NAME;
+
+The above statement will list only the unique values from Column1. Let's have a look at the same statement for a column with Countries in it. 
+
+		SELECT DISTINCT Countries FROM Customers;
+
+This will list the unique countries that Customers are from in the table called Customers.
+
+
+What might be helpful is getting the count of the unique values. That can be achieved by the below statement. 
+
+		SELECT COUNT(DISTINCT Country) FROM Customers;
+
+COUNT is a function and we will touch base on that a little later. Right now you can try out this example on your machine. 
 
 
   
 <!-- MODULE2 -->
 ## Module 2
 
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a list of proposed features (and known issues).
+Diving a little deeper into SQL with filtering and sorting of results.
+
+
+## WHERE Clause
+
+WHERE clause is used to filter the results. As the name suggests it will help us filter the results where our conditions are met. For example if we want names of Customers only from a certain Country or a City we could write a statement like this
+
+		SELECT * FROM Customer
+		WHERE Country='Denmark';
+
+The above statement shoudl give you an idea of the syntax. It goes like this:
+
+		SELECT Col_1,Col_2,...Col_N
+		FROM TABLE_NAME
+		WHERE Condition;
+
+The WHERE clause is used not only with SELECT statement but also with other statements such as UPDATE,DELETE and many other... you will see soon enough. 
+
+*Also please keep in mind that when using the WHERE clause if the condition is in text you need to use ' ' quotes. If the condition is in digita no quotes are required.*
+
+
+
+### Operators in the WHERE Clause
+
+You saw the operator = being used earlier in the WHERE clause. There are other operators as well that can be used. Some of them are listed below for your reference.
+
+\> :Greater Than
+
+\< :Less Than 
+
+\>= :Greater Than or Equal To 
+
+\<= :Less Than or Equal To
+
+\<\> :Not Equal ( In some SQL Versions != is used for Not Equal )
+
+LIKE :This operator searches for a pattern. We will look at this in detail a little later
+
+BETWEEN :As the name suggests, between a certiain range.We will look at this in detail a little later
+
+IN :To specify multiple possible values for a column. We will look at this in detail a little later
+
+
+
+
+
+## AND OR NOT
+
+Along with the above mentioned operators the WHERE clause can also be used with the operators "AND" "OR" "NOT".
+
+*AND*: Displays a record if *ALL* the conditions separated by AND are true.
+
+
+Usage: 
+
+		SELECT * FROM Customers
+		WHERE Country='Germany' AND City='Berlin';
+
+
+
+*OR*: Displays a record if *ANY* of the conditions separated by OR are true.
+
+
+Usage:
+
+		SELECT * FROM Customers
+		WHERE Country='Germany' OR Country='Austria';
+
+
+
+*NOT*: Displays a record if the condition is NOT true. 
+
+
+Usage:
+
+		SELECT * FROM Customers
+		WHERE NOT Country='Canada';
+
+
+
+### Combining AND OR NOT
+
+
+Sometimes there can be a need to combine these various operators to finetune our results. What if we wanted the list of customers from Germany but only those that are from either Berlin or Munich ? We need to use parenthesis to do that. 
+
+
+		SELECT * FROM Customers
+		WHERE Country='Germany' AND (City='Berlin' OR City='Munic');
+
+
+Another example is of combining AND and NOT
+
+		SELECT * FROM Customers
+		WHERE NOT Country='Germany' AND NOT Country='Canada';
+
+
+
+
+## ORDER BY 
+
+Often it helps if the results from a query can be sorted in a particular manner. Sorting in SQL is done by using ODER BY.
+By default the query in SQL is sorted in an ASCENDING order. That is small to big. 
+Should you need to specify that the result be in DESCENDING order you must write DESC at the end of the statement. 
+
+A small example:
+
+		SELECT * Customers
+		ORDER BY Country;
+
+Another example where we ORDER BY more than one column
+
+		SELECT * Customers
+		ORDER BY Country, CustomerName;
+
+The same example but with DESC
+
+		SELECT * Customers
+		ORDER BY Country, CustomerName DESC;
+
+
+
 
 
 
 <!-- MODULE3 -->
 ## Module 3
-
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
 
 
 
