@@ -67,10 +67,10 @@
 	</ul>
     <li><a href="#Module-3">Module 3</a></li>
 	<ul>
-	<li><a href="Insert-Into-Statement">Insert Into Statement</a></li>
-	<li><a href="Null-Values">Null Values</a></li>
-	<li><a href="Update-Statement">Update Statement</a></li>
-	<li><a href="Delete-Statement">Delete Statement</a></li>
+	<li><a href="#Insert-Into-Statement">Insert Into Statement</a></li>
+	<li><a href="#Null-Values">Null Values</a></li>
+	<li><a href="#Update-Statement">Update Statement</a></li>
+	<li><a href="#Delete-Statement">Delete Statement</a></li>
 	</ul>
     <li><a href="#Module-4">Module 4</a></li>
     <li><a href="#Module-5">Module 5</a></li>
