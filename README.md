@@ -60,7 +60,8 @@
 	<li><a href="#Select-Distinct">Select Distinct</a></li>
 	</ul>
     <li><a href="#Module-2">Module 2</a></li>
-	<ul><li><a href="#Where-Clause">Where Clause</a><li>
+	<ul>
+	<li><a href="#Where-Clause">Where Clause</a><li>
 	<li><a href="#And-Or-Not">And Or Not</a></li>
 	<li><a href="#Order-By">Order By</a></li>
 	</ul>
@@ -92,7 +93,7 @@
 <!-- GETTING STARTED -->
 ## Getting Started
 
-You can use this project to learn SQL either on a MYSQL server or a POSTGRESQL server. The database that is used as an example is Northwinds Databse. This is an example database that you Microsoft created for tutorials. It is available on GitHub [here.](https://github.com/Microsoft/sql-server-samples/tree/master/samples/databases/northwind-pubs)
+You can use this project to learn SQL either on a MYSQL server or a POSTGRESQL server. The database that is used as an example is Northwinds Databse. This is an example database that Microsoft created for tutorials. It is available on GitHub [here.](https://github.com/Microsoft/sql-server-samples/tree/master/samples/databases/northwind-pubs)
 
 For a POSTGRESQL server the database that can be used is the DVD Rental Database that can be found [here.](https://sp.postgresqltutorial.com/wp-content/uploads/2019/05/dvdrental.zip)
 
@@ -112,7 +113,7 @@ A computer with an internet connection is required. I will not be diving deep in
 Basic introduction of SQL. It stands for Structured Query Language. In this module you will learn the basics of SQL. You already have learnt what the acronym stands for.
 
 
-## Introduction To SQL
+### Introduction To SQL
 
 So we know now what SQL stands for, but what does it do ?? SQL lets you access and manipulate entries in databases. A database is simply put a collection of data. SQL can help you retrieve data, insert data, run queries,create tables, create databases and much more. We will be going over some of the most important abilities below as we progress.
 
@@ -141,7 +142,7 @@ RDBMS is the stepping stone for SQL and for all modern databases such as Oracle,
 The data in RDBMS is stored in database objects called tables. A table is a collection of data entries and it consists of rows and columns. Rows are horizontal lines that contain data and Columns are vertical lines that hold data. A record is also called a row and a field is also known as a column.
 
 
-## Syntax
+### Syntax
 
 - Database Tables
 
@@ -184,7 +185,7 @@ Semicolons are used to differentiate multiple SQL statements.
  
 
 
-## Select
+### Select
 
 Extracting data is the first step and is an important step in databasae management. We need to use the *SELECT* statement to extract data. 
 
@@ -199,7 +200,7 @@ Here column1, coulmn2 are the field names of the table you want to select data f
 
 
 
-## Select Distinct
+### Select Distinct
 
 At times there can be data that is duplicate in nature i.e it is repeated in the table for example, it could be the name of a country or name of a city. If that is the case and
 we need only the unique ( distinct ) values we need to append the word *distinct* to select. It is done like so
@@ -227,7 +228,7 @@ COUNT is a function and we will touch base on that a little later. Right now you
 Diving a little deeper into SQL with filtering and sorting of results.
 
 
-## WHERE Clause
+### WHERE Clause
 
 WHERE clause is used to filter the results. As the name suggests it will help us filter the results where our conditions are met. For example if we want names of Customers only from a certain Country or a City we could write a statement like this
 
@@ -270,7 +271,7 @@ IN :To specify multiple possible values for a column. We will look at this in de
 
 
 
-## AND OR NOT
+### AND OR NOT
 
 Along with the above mentioned operators the WHERE clause can also be used with the operators "AND" "OR" "NOT".
 
@@ -304,7 +305,7 @@ Usage:
 
 
 
-### Combining AND OR NOT
+#### Combining AND OR NOT
 
 
 Sometimes there can be a need to combine these various operators to finetune our results. What if we wanted the list of customers from Germany but only those that are from either Berlin or Munich ? We need to use parenthesis to do that. 
@@ -322,7 +323,7 @@ Another example is of combining AND and NOT
 
 
 
-## ORDER BY 
+### ORDER BY 
 
 Often it helps if the results from a query can be sorted in a particular manner. Sorting in SQL is done by using ODER BY.
 By default the query in SQL is sorted in an ASCENDING order. That is small to big. 
@@ -350,6 +351,89 @@ The same example but with DESC
 
 <!-- MODULE3 -->
 ## Module 3
+
+Diving still deeper into SQL with managing data in tables with insertion, deletion and updating.
+
+
+### Insert Into Statement
+
+If you need to insert data into a table you need to use the INSERT INTO statement. 
+
+Simple syntax for the same goes something like this 
+
+		INSERT INTO TABLE_NAME (Col_1,Col_2..Col_N)
+		VALUES (Value_for_Col_1,Value_for_Col_2,Value_for_Col_N);
+
+If you are adding values to ALL columns of the table you do not need to specify the column names BUT ensure that the values are in the same order as the columns.
+
+		INSERT INTO TABLE_NAME
+		VALUES (Value_for_Col_1,Value_for_Col_2,Value_for_Col_N);
+
+
+
+### Null Values
+
+A field with a NULL value is a field with no value. NULL value is different from a field with zero in it or with spaces. 
+NULL value is a field that is left blank at the time of creation. For example a field which is optional.
+
+
+#### Testing for NULL Values
+
+To test for fields with NULL values we need to use the IS NULL or NOT NULL operators.
+
+Syntax IS NULL:
+
+		SELECT Column_name
+		FROM TABLE_NAME
+		WHERE Column_name IS NULL;	
+
+Syntax NOT NULL:
+
+		SELECT Column_name
+		FROM TABLE_NAME
+		WHERE Column_name IS NULL;	
+
+_Always use IS NULL to look for NULL Values_
+
+
+### Update Statement
+
+The update statement is used to modify data in existing records of tables. 
+*IMP* It should be used with a condition such as WHERE clause else all records of the table will be updated.
+
+Syntax:
+
+		UPDATE TABLE_NAME
+		SET Col_1=value1, Col_2=value2,..Col_N=valueN
+		WHERE condition;
+
+_Remember that if the value is in text you must use quotes._
+
+
+
+### Delete Statement
+
+The delete statement is used to deleted existing records in a table.
+*IMP* It should be used with a condition such as WHERE clause else all records of the table will be updated.
+
+
+Syntax:
+
+		DELETE FROM TABLE_NAME
+		WHERE condition;
+
+To delete all records from a table without deleting the table you can use the below statement. This means that the table structre, attributes and index will remain intact.
+
+		DELETE FROM TABLE_NAME;
+
+
+
+
+
+
+
+
+
 
 
 
