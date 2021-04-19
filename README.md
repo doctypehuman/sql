@@ -56,14 +56,14 @@
 	<ul>
 	<li><a href="#introduction-to-sql">Introduction To SQL</a></li>
 	<li><a href="#Syntax">Syntax</a></li>
-	<li><a href="Select">Select</a></li>
-	<li><a href="Select-Distinct">Select Distinct</a></li>
+	<li><a href="#Select">Select</a></li>
+	<li><a href="#Select-Distinct">Select Distinct</a></li>
 	</ul>
     <li><a href="#Module-2">Module 2</a></li>
 	<ul>
-	<li><a href="Where-Clause">Where Clause</a><li>
-	<li><a href="And-Or-Not">And Or Not</a></li>
-	<li><a href="Order-By">Order By</a></li>
+	<li><a href="#Where-Clause">Where Clause</a><li>
+	<li><a href="#And-Or-Not">And Or Not</a></li>
+	<li><a href="#Order-By">Order By</a></li>
 	</ul>
     <li><a href="#Module-3">Module 3</a></li>
 	<ul>
@@ -155,7 +155,7 @@ Most actions that need to be performed on databases are done with SQL Statements
 
 		SELECT * FROM Customers;
 
-SQL is not case sensitive. SELECT is the same as select. 
+SQL is not case sensitive. SELECT is the same as select.
 
 Semicolons are used to differentiate multiple SQL statements.
 
@@ -188,15 +188,15 @@ Semicolons are used to differentiate multiple SQL statements.
 
 
   
-<!-- ROADMAP -->
-## Roadmap
+<!-- MODULE2 -->
+## Module 2
 
 See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a list of proposed features (and known issues).
 
 
 
-<!-- CONTRIBUTING -->
-## Contributing
+<!-- MODULE3 -->
+## Module 3
 
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
