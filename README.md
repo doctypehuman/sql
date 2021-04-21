@@ -73,7 +73,23 @@
 	<li><a href="#Delete-Statement">Delete Statement</a></li>
 	</ul>
     <li><a href="#Module-4">Module 4</a></li>
+	<ul>
+	<li><a href="Top-Limit-Row-Num">Top Limit Or Row Num</a></li>
+	<li><a href="basic-functions">Basic Functions</a></li>
+	<li><a href="Like-Operator">Like Operator</a></li>
+	<li><a href="Wildcards">Wildcards</a></li>
+	<li><a href="In-Operator">In Operator</a></li>
+	<li><a href="Between-Operator">Between Operator</a></li>
+	<li><a href="Aliases">Aliases</a></li>
+	</ul>
     <li><a href="#Module-5">Module 5</a></li>
+	<ul>
+	<li><a href=""></a></li>
+	<li><a href=""></a></li>
+	<li><a href=""></a></li>
+	<li><a href=""></a></li>
+	<li><a href=""></a></li>
+	</ul>	
     <li><a href="#Module-6">Module 6</a></li>
     <li><a href="#Module-7">Module 7</a></li>
     <li><a href="#Module-8">Module 8</a></li>
@@ -431,10 +447,157 @@ To delete all records from a table without deleting the table you can use the be
 
 
 
+<!-- Module4  -->
+
+## Module 4
+
+We will learn a little about Methods a little bit about Functions and some more operators to make our life a little easier while going through data.
 
 
 
 
+### Top Or Limit Or RowNum
+
+The `SELECT TOP` clause is used to specify the number of records to return. It is useful on large tables with thousands of records.
+
+The syntax for this is
+
+		SELECT TOP number|percent column_name(s)
+		FROM TABLE_NAME
+		WHERE condition;
+
+Example
+
+		SELECT TOP 3 * 
+		FROM Customers
+		Where Country='Germany';
+
+*Please note that not all databses accept SELECT TOP*
+
+For MYSQL `LIMIT` is used and the above example will look something like this
+
+		SELECT * FROM Customers
+		Where Country='Germany'
+		LIMIT 3;
+
+For ORACLE as well there will be a difference since they use `ROW NUM`
+
+		SELECT * FROM Customers
+		Where Country='Germany' AND ROWNUM <= 3;
+
+
+### Basic Functions
+
+Functions in SQL are basically methods of getting results such as Count, Sum, Max, Min etc. Below are some basic functions along with their syntax for your reference. 
+
+
+#### MIN\(\) MAX\(\)
+
+As the name suggests these functions will return the minimum or maximum value from a column. 
+Below is the syntax for the same
+
+		SELECT MIN(col_name)
+		FROM TABLE_NAME
+		WHERE Condition;
+
+
+		SELECT MAX(col_name)
+		FROM TABLE_NAME
+		WHERE Condition;
+
+The brackets within which the column name is mentioned are important and part of the syntax.
+
+
+#### COUNT\(\) AVG\(\) SUM\(\)
+
+Again as the name suggests these functions provide the count, average and sum values of the records. An example for each for you to understand the syntax
+
+
+		SELECT COUNT(CustomerID)
+		FROM Customers;
+
+
+		SELECT AVG(Price)
+		FROM Products;
+
+
+		SELECT SUM(Quantity)
+		FROM OrderDetails;
+
+
+
+*NOTE:NULL VALUES ARE IGNORED*
+
+### Like Operator
+
+The `Like` operator is used with the `WHERE` clause to search for a particular pattern in a column. A pattern is formed by using wildcards. The most common wildcards that are used with the `Like` operator are *%* and *_* The % sign represents zero,one or multiple characters. The _ represents a single character.
+
+MSAccess uses an asterisk instead of the percent sign and a question mark in place of the underscore.
+
+The percent sign and underscore can be used in combinations. We can also combine any number of conditions with the `AND` and `OR` operators.
+
+Syntax for the `Like` operator is
+
+		SELECT col_1,col_2...col_n
+		FROM TABLE_NAME
+		WHERE Column LIKE pattern;
+
+Example 
+
+		SELECT *	
+		FROM Customers
+		WHERE CustomerName LIKE 'a%';
+
+This example will return all records where  CustomerNames  begins with the letter a.
+
+We can also use the `Like` operator with the `NOT` operator to use negative conditions or to eliminate options.
+
+		SELECT *
+		FROM Customers
+		WHERE Country NOT LIKE 'g%';
+
+This example will return all records where the country's name does not begin with g.
+
+
+
+
+
+
+### Wildcards
+
+
+
+### In Operator
+
+
+
+### Between Operator
+
+
+
+### Aliases
+
+
+
+
+
+
+<!-- Module 5 -->
+## Module 5
+
+
+<!-- Module 6 -->
+
+## Module 6
+
+
+<!-- Module 7 -->
+## Module 7
+
+
+<!-- Module 8 -->
+
+## Module 8
 
 
 <!-- LICENSE -->
