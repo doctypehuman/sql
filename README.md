@@ -84,11 +84,13 @@
 	</ul>
     <li><a href="#Module-5">Module 5</a></li>
 	<ul>
-	<li><a href=""></a></li>
-	<li><a href=""></a></li>
-	<li><a href=""></a></li>
-	<li><a href=""></a></li>
-	<li><a href=""></a></li>
+	<li><a href="Joins">Joins</a></li>
+	<li><a href="Inner-Join">Inner Join</a></li>
+	<li><a href="Left-Join">Left Join</a></li>
+	<li><a href="Right-Join">Right Join</a></li>
+	<li><a href="Full-Outer-Join">Full Outer Join</a></li>
+	<li><a href="Self-Join">Self Join</a></li>
+	<li><a href="Union-Operator">Union Operator</a></li>
 	</ul>	
     <li><a href="#Module-6">Module 6</a></li>
     <li><a href="#Module-7">Module 7</a></li>
@@ -565,25 +567,194 @@ This example will return all records where the country's name does not begin wit
 
 ### Wildcards
 
+A wildcard character is used to substitute one or more characters in a string. You already have gotten a small brief above. When used with the `WHERE` clause we can search for a 
+specified pattern in a column. 
+
+Some commonly used wildcard characters in SQL are:
+
+ \[\] represents any single character within the brackets. h\[oa\]t  will search for hot and hat.
+
+ ^ represents any character not within the brackets. h\[^oa\]t will search for all combinations except hot and hat.
+
+ \- represents a range of characters. h\[a-d\]t will search for hat hbt hct hdt.
+
+
+All wildcard characters can be used in combinations as well. 
+
+
+
+_PS: If you are familiar with bash, using wildcards in SQL is like globbing and regular expression._
 
 
 ### In Operator
+
+The `IN` operator allows you to specify multiple values in the `WHERE` clause. You can also use the `NOT` operator with it.
+
+Simple Syntax:
+
+		SELECT column_name(s)
+		FROM TABLE_NAME
+		WHERE column_name IN (value1, value2...);
+
+Example:
+
+		SELECT * FROM Customers
+		WHERE Country IN ( 'Germany', 'Canada');
+
+
+Slightly Advanced Syntax:
+
+		SELECT column_name(s)
+		FROM TABLE_NAME
+		WHERE column_name IN ( SELECT STATEMENT);
+
+Example:
+
+		SELECT * FROM Customers
+		WHERE Country IN ( SELECT Country FROM Suppliers);
+
+The above exaample will select all customers that are from the same countries as the suppliers.
+
+
+
 
 
 
 ### Between Operator
 
+The `BETWEEN` operator will select values within a given range. The values can be numbers,text or date.
+
+The `BETWEEN` operator is inclusive that means it will include the start and end values. Once again the `NOT` operator can be used in combination.
+
+Syntax:
+
+		SELECT column_name(s)
+		FROM TABLE_NAME
+		WHERE column_name BETWEEN value1 AND value2;
+
+Example:
+
+		SELECT * FROM Products
+		WHERE Price BETWEEN 10 AND 20;
+
+With `NOT`
+
+		SELECT * FROM Products
+		WHERE Price NOT BETWEEN 10 AND 20;
+
+With `IN`
+
+		SELECT * FROM Products
+		WHERE Price BETWEEN 10 AND 20
+		AND Category IN('Spices', 'Oils');
+
+Use with Dates
+
+		SELECT * FROM Orders
+		WHERE OrderDate BETWEEN '20201-08-25' AND '2020-09-25';
+
+
 
 
 ### Aliases
 
+Aliases are used to give a table or a column name a temporary name. Aliases can be useful when
 
+- More than one table is used for a query
+- Functions are used in the query
+- Column names are very big and not readable
+- Two or more columns are combined
+
+
+Column Syntax:
+
+		SELECT column_name AS alias_name
+		FROM TABLE_NAME;
+
+Table Syntax:
+
+		SELECT column_name(s)
+		FROM TABLE_NAME AS alias_name;
+
+If the alias name contains a space it will need to be quoted. 
+
+
+Creating one alias for multiple columns is also possible.
+
+As an exmaple we will create an alias called "Address" which combines four columns
+
+SQL
+
+		SELECT CustomerName, Address + ', ' + PostalCode + ' ' + City + ', ' + Country AS Address
+		FROM Customers;
+
+MYSQL
+
+		SELECT Addrss, CONCAT(Address,', ',PostalCode,', ',City,', ',Country) AS Address
+		FROM Customers;
 
 
 
 
 <!-- Module 5 -->
+
 ## Module 5
+
+
+Diving deeper into the rabbit hole !! We are going to learn how to use common column(s)  to combine different tables. If you remember venn diagrams this will be a breeze.
+
+
+
+### Joins
+
+
+The `JOIN` operator is used to combine rows from two or more tables based on a column which is common in both the tables. 
+
+We can use this functionality to match different data points to get better insights. 
+
+Like for example in this current databasae there are two tables. Customers and Orders. 
+
+There is a column that is common in both of them which is CutomerID. 
+
+Using `JOIN` operators we can create a statement which will give us the number of orders for each customer.
+
+
+
+
+### Inner Join
+
+
+The `INNER JOIN` keyword selects records that have matching values in both the tables.
+
+
+Syntax:
+
+		SELECT column_name(s)
+		FROM TABLE_1
+		INNER JOIN TABLE_2
+		ON TABLE_1.column_name = TABLE_2.column_name;
+
+
+### Left Join
+
+
+
+
+### Right Join
+
+
+
+### Full Outer Join
+
+
+
+
+### Self Join
+
+
+
+
+### Union Operator
 
 
 <!-- Module 6 -->
