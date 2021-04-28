@@ -759,23 +759,163 @@ Example:
 ### Left Join
 
 
+The `LEFT JOIN` returns all records from the left table i.e TABLE 1 and the matched records from the right table i.e TABLE 2. The result is NULL from the right side, if there is no match. It will still return all records from TABLE 1.
+
+
+Syntax:
+
+		SELECT column_name(s)
+		FROM TABLE_1
+		LEFT JOIN TABLE_2
+		ON TABLE_1.column_name = TABLE_2.column_name;
+
+In some databases `LEFT JOIN` is also called as `LEFT OUTER JOIN`
+
+
+Example:
+
+		SELECT Customers.CustomerName, Orders.OrderID
+		FROM Customers
+		LEFT JOIN Orders
+		ON Customers.CustomerID = Orders.CustomerID
+		ORDER BY Customers.CustomerName;
+
+In the above example we have displayed all the orders made by the customers. 
+
 
 
 ### Right Join
+
+
+The `RIGHT JOIN` returns all records from the right table i.e TABLE 2 and the matched records from the left table i.e TABLE 1. The result is NULL from the left side, if there is no match. It will still return all records from TABLE 2. Basically the complete opposite of `LEFT JOIN`
+
+
+Syntax:
+
+		SELECT column_name(s)
+		FROM TABLE_1
+		RIGHT JOIN TABLE_2
+		ON TABLE_1.column_name = TABLE_2.column_name;
+
+In some databases `RIGHT JOIN` is also called as `RIGHT OUTER JOIN`
+
+
+Example:
+
+		SELECT Orders.OrderID, Employees.LastName, Employees.FirstName
+		FROM Orders
+		RIGHT JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID
+		ORDER BY Orders.OrderID;	
+
+In the above example we will be dsiplayed all employess and any orders that they might have placed.
+
+The `RIGHT JOIN` will return all records from the right table i.e Employees even if there are no matches on the left table i.e Orders.
+
 
 
 
 ### Full Outer Join
 
 
+The `FULL OUTER JOIN` will return all records when there is a match in left i.e TABLE 1 or right i.e TABLE 2 records. This operator can return very large data sets.
+
+In some databases `FULL OUTER JOIN` is called as `FULL JOIN`
+
+
+Syntax:
+
+		SELECT column_name(s)
+		FROM TABLE_1
+		FULL OUTER JOIN TABLE_2
+		ON TABLE_1.column_name = TABLE_2.column_name
+		WHERE condition;
+
+
+Example:
+
+		SELECT Customers.CustomerID, Orders.OrderID
+		FROM Customers
+		FULL OUTER JOIN Orders
+		ON Customers.CustomerID = Orders.CustomerID
+		ORDER BY Customers.CustomerName;
+
+In the above example we will be displayed all orders of all customers. If a customer does not have an order a NULL value will be displayed but the record will be shown.
+		
+
 
 
 ### Self Join
+
+A `SELF JOIN` is a regular join where in the table is joined with itself. Alias is used to further divide the columns which will then later get matched.
+
+
+Syntax:
+
+		SELECT column_name(s)
+		FROM TABLE_1 AS t1, TABLE_2 As t2
+		WHERE condition;
+
+Let us try this from the "Customers" table where in we want to find out all the customers with the same city.
+
+		SELECT A.CustomerName AS CumstomerName1, B.CustomerName AS CustomerName2, A.City
+		FROM Customers A, Customers B
+		WHERE CustomerName1 <> CustomerName2
+		AND A.City = B.City
+		ORDER BY A.City;
 
 
 
 
 ### Union Operator
+
+
+The `UNION` operator is used to combine the result-set of two `SELECT` statements.
+
+- Each `SELECT` statement within the `UNION` operator should have the same number of columns.
+
+- The column must have similar data types
+
+- The columns in each `SELECT` statement must also be in the same order.
+
+When we use `UNION` operator duplicate values will not be displayed. For that we need to use the `UNION ALL` operator
+
+
+Syntax `UNION`
+
+		SELECT column_name FROM TABLE_1
+		UNION
+		SELECT column_name FROM TABLE_2;
+
+Syntax `UNION ALL`
+
+		SELECT column_name FROM TABLE_1
+		UNION ALL
+		SELECT column_name FROM TABLE_2;
+
+
+The column names in the result-set are usually equal to the column names in the first `SELECT` statement in the union.
+
+
+Example:
+
+		SELECT City FROM Customers
+		UNION
+		SELECT City FROM Suppliers
+		ORDER BY City;
+
+The above example will return us a data-set of a list of cities which have Customers and Suppliers. It will display only distinct values. For all values even those that are being repeated usel `UNION ALL`.
+
+
+`UNION` with `WHERE`
+
+		SELECT City,Country FROM Customers
+		WHERE Country = 'Germany'
+		UNION 
+		SELECT City,Country FROM Suppliers
+		WHERE Country = 'Germany'
+		ORDER BY City;
+
+Again in the above example only distinct cities will be displayed from Germany. Use `UNION ALL` for repetitve values.
 
 
 <!-- Module 6 -->
