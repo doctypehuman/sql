@@ -735,6 +735,27 @@ Syntax:
 		ON TABLE_1.column_name = TABLE_2.column_name;
 
 
+The `INNER JOIN` selects all rows from both tables as long as there is a match between the columns. If there are records in the "Orders" table that DO NOT have a match in "Customers" then those records will not be shown.
+
+
+Example: 
+
+		SELECT Orders.OrderID, Customers.CustomerName
+		FROM Orders
+		INNER JOIN Customers ON Customers.CustomerID = Customers.CustomerID;
+
+
+We can use `INNER JOIN` to join three tables as well if there are columns that match.
+
+Example: 
+
+		SELECT Orders.OrderID, Customers.CustomerName, Shippers.ShipperName
+		FROM (( Orders
+		INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID)
+		INNER JOIN Shippers ON Orders.ShipperID = Shippers.ShipperID);
+
+
+
 ### Left Join
 
 
