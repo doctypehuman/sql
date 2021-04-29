@@ -960,45 +960,73 @@ Again in the above example only distinct cities will be displayed from Germany. 
 ## Module 6
 
 
-## Group By Statement
-## Having Clause	
-## Exists Operators
-## ANY and ALL Operators
-## Select Into Statement
-## Insert Into Select Statement
-## Case Statement
-## Null Functions
+### Group By Statement
+
+### Having Clause	
+
+### Exists Operators
+
+### ANY and ALL Operators
+
+### Select Into Statement
+
+### Insert Into Select Statement
+
+### Case Statement
+
+### Null Functions
 
 <!-- Module 7 -->
-## Module 7
-## Stored Procedure
-## Comments
-## Operators
+### Module 7
+
+### Stored Procedure
+
+### Comments
+
+### Operators
 	
 
 <!-- Module 8 -->
 
 ## Module 8
 
-## Create Database
-## Drop Database
-## Backup Database
-## Create Table
-## Alter Table
-## Constraints
-## Not Null Constraints
-## Unique Constraints
-## Primary Key Constraint
-## Foreign Key Constraint
-## Check Constraint
-## Default Constraint
-## Create Index Statement
-## Auto Increment Field
-## Working With Dates
-## Views
-## Injection
-## Hosting
-## Data Types
+### Create Database
+
+### Drop Database
+
+### Backup Database
+
+### Create Table
+
+### Alter Table
+
+### Constraints
+
+### Not Null Constraints
+
+### Unique Constraints
+
+### Primary Key Constraint
+
+### Foreign Key Constraint
+
+### Check Constraint
+
+### Default Constraint
+
+### Create Index Statement
+
+### Auto Increment Field
+
+### Working With Dates
+
+### Views
+
+### Injection
+
+### Hosting
+
+### Data Types
 	<
 <!-- LICENSE -->
 ## License
