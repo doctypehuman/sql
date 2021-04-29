@@ -105,31 +105,31 @@
 	</ul>
     <li><a href="#Module-7">Module 7</a></li>
 	<ul>
-	<li><a href="Stored-Procedure">Stored Procedure</a></li>
-	<li><a href="Comments">Comments</a></li>
-	<li><a href="Operators">Operators</a></li>
+	<li><a href="#Stored-Procedure">Stored Procedure</a></li>
+	<li><a href="#Comments">Comments</a></li>
+	<li><a href="#Operators">Operators</a></li>
 	</ul>
     <li><a href="#Module-8">Module 8</a></li>
 	<ul>
-	<li><a href="Create-Database">Create Database</a></li>
-	<li><a href="Drop-Database">Drop Database</a></li>
-	<li><a href="Backup-Database">Backup Database</a></li>
-	<li><a href="Create-Table">Create Table</a></li>
-	<li><a href="Alter-Table">Alter Table</a></li>
-	<li><a href="Constraints">Constraints</a></li>
-	<li><a href="Not-Null-Constraints">Not Null Constraints</a></li>
-	<li><a href="Unique-Constraint">Unique Constraints</a></li>
-	<li><a href="Primary-Key-Constraint">Primary Key Constraint</a></li>
-	<li><a href="Foreign-Key-Constraint">Foreign Key Constraint</a></li>
-	<li><a href="Check-Constraint">Check Constraint</a></li>
-	<li><a href="Default-Constraint">Default Constraint</a></li>
-	<li><a href="Create-Index-Statement">Create Index Statement</a></li>
-	<li><a href="Auto-Increment-Field">Auto Increment Field</a></li>
-	<li><a href="Working-With-Dates">Working With Dates</a></li>
-	<li><a href="Views">Views</a></li>
-	<li><a href="Injection">Injection</a></li>
-	<li><a href="Hosting">Hosting</a></li>
-	<li><a href="Data-Types">Data Types</a></li>
+	<li><a href="#Create-Database">Create Database</a></li>
+	<li><a href="#Drop-Database">Drop Database</a></li>
+	<li><a href="#Backup-Database">Backup Database</a></li>
+	<li><a href="#Create-Table">Create Table</a></li>
+	<li><a href="#Alter-Table">Alter Table</a></li>
+	<li><a href="#Constraints">Constraints</a></li>
+	<li><a href="#Not-Null-Constraints">Not Null Constraints</a></li>
+	<li><a href="#Unique-Constraint">Unique Constraints</a></li>
+	<li><a href="#Primary-Key-Constraint">Primary Key Constraint</a></li>
+	<li><a href="#Foreign-Key-Constraint">Foreign Key Constraint</a></li>
+	<li><a href="#Check-Constraint">Check Constraint</a></li>
+	<li><a href="#Default-Constraint">Default Constraint</a></li>
+	<li><a href="#Create-Index-Statement">Create Index Statement</a></li>
+	<li><a href="#Auto-Increment-Field">Auto Increment Field</a></li>
+	<li><a href="#Working-With-Dates">Working With Dates</a></li>
+	<li><a href="#Views">Views</a></li>
+	<li><a href="#Injection">Injection</a></li>
+	<li><a href="#Hosting">Hosting</a></li>
+	<li><a href="#Data-Types">Data Types</a></li>
 	</ul>
 
   </ul>
