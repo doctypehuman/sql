@@ -84,13 +84,13 @@
 	</ul>
     <li><a href="#Module-5">Module 5</a></li>
 	<ul>
-	<li><a href="Joins">Joins</a></li>
-	<li><a href="Inner-Join">Inner Join</a></li>
-	<li><a href="Left-Join">Left Join</a></li>
-	<li><a href="Right-Join">Right Join</a></li>
-	<li><a href="Full-Outer-Join">Full Outer Join</a></li>
-	<li><a href="Self-Join">Self Join</a></li>
-	<li><a href="Union-Operator">Union Operator</a></li>
+	<li><a href="#Joins">Joins</a></li>
+	<li><a href="#Inner-Join">Inner Join</a></li>
+	<li><a href="#Left-Join">Left Join</a></li>
+	<li><a href="#Right-Join">Right Join</a></li>
+	<li><a href="#Full-Outer-Join">Full Outer Join</a></li>
+	<li><a href="#Self-Join">Self Join</a></li>
+	<li><a href="#Union-Operator">Union Operator</a></li>
 	</ul>	
     <li><a href="#Module-6">Module 6</a></li>
     <li><a href="#Module-7">Module 7</a></li>
