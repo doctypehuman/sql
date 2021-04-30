@@ -960,17 +960,257 @@ Again in the above example only distinct cities will be displayed from Germany. 
 ## Module 6
 
 
+In this module we will go over some more methods and opertators.
+
+
 ### Group By Statement
+
+As the name suggests, `GROUP BY` statement groups rows that have the same values into summary rows. Consider it like finding the number of customers in each city or country.
+
+`GROUP BY` statement is often used with other functions such as `COUNT()` `MAX` `MIN` `AVG` to group the result-set by one or more columns.
+
+
+Syntax:
+
+	SELECT column_name(s)
+	FROM TABLE_NAME
+	WHERE condition
+	GROUP BY column_name(s)
+	ORDER BY column_names(s);
+
+
+Example:
+
+	SELECT COUNT(CustomerID),Country
+	FROM Customers
+	GROUP BY Country;
+
+In the above example we will be displayed the number of customers from each country. 
+To further fintune the example you can use `ORDER BY DESC` to display the number in descending order.
+
+
+Example of `GROUP BY` with `JOIN`:
+
+	SELECT Shippers.ShipperName, COUNT(Orders.OrderID) AS NumberOfOrders FROM Orders
+	LEFT JOIN Shippers ON Orders.ShipperID = Shippers.ShipperID
+	GROUP BY ShipperName;
+
+In the above example we will get the number of orders sent by each Shipper.
+
 
 ### Having Clause	
 
+The `HAVING` clause is used in SQL was added later since the `WHERE` clause could not be used with aggregate functions.
+
+
+Syntax:
+
+	SELECT column_name(s)
+	FROM TABLE_NAME
+	WHERE condition
+	GROUP BY column_name(s)
+	HAVING condition
+	ORDER BY column_names(s);
+
+
+Example:
+
+	SELECT COUNT(CustomerID), Country
+	FROM Customers
+	GROUP BY Country
+	HAVING COUNT(CustomerID) > 5
+	ORDER BY COUNT(CustomerID) DESC;
+
+In the above example we will be displayed a result-set of Countries wich have more than 5 customers and the result-set will be displayed in descending order.
+
+
+Example of `HAVING` and `JOIN`
+
+	SELECT Employees.LastName, COUNT(Orders.OrderID) AS NumberOfOrders
+	FROM (Orders
+	INNER JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID)
+	GROUP BY LastName
+	HAVING COUNT(Orders.OrderID) > 10;
+
+In this example we will get a result-set of employees with more than 10 orders.
+
+
+Example of `HAVING` with `WHERE` and `JOIN`
+
+	SELECT Employees.LastName, COUNT(Orders.OrderID) AS NumberOfOrders
+	FROM Orders
+	INNER JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID
+	WHERE LastName = 'Davolio' OR LastName = 'Fuller'
+	GROUP BY LastName
+	HAVING COUNT(Orders.OrderID) > 25;
+
+Here we are checking if Employee Davolio or Fuller have more than 25 orders.
+
+
+
 ### Exists Operators
+
+The `EXISTS` operator is used to test for the existence of a record in a subquery.
+The `EXISTS` operator returns a TRUE value if the subquery returns one more more records.
+
+Syntax:
+
+	SELECT column_name(s)
+	FROM table_name
+	WHERE EXISTS
+	(SELECT column_name FROM table_name WHERE condition);
+
+
+Example:
+
+	SELECT SupplierName
+	FROM Suppliers
+	WHERE EXISTS 
+	(SELECT ProductName FROM Products WHERE Products.SupplierID = Suppliers.supplierID AND Price < 20);
+
+
+The above statement will return TRUE and list the Suppliers who have a product whose price is less than 20.
+
+
 
 ### ANY and ALL Operators
 
+`ANY` and `ALL` operators are used with `WHERE` and `HAVING` operators.
+
+`ANY` operator returns TRUE if any of the subquery values meets the conditions.
+
+`ALL` operator returns TRUE if all of the subquery values meets the conditions.
+
+
+Syntax `ANY`:
+
+	SELECT column_name(s)
+	FROM table_name
+	WHERE column_name operator ANY
+	(SELECT column_name FROM table_name WHERE condition);
+
+
+Syntax `ALL`:
+
+	SELECT column_name(s)
+	FROM table_name
+	WHERE column_name operator ALL
+	(SELECT column_name FROM table_name WHERE condition);
+
+
+The _operator_ mentioned in the syntax must be a standard comparison operator like \< , \> , = etc.
+
+
+Example `ANY`:
+
+	SELECT ProductName
+	FROM Products
+	WHERE ProductID = ANY
+	(SELECT ProductID FROM OrderDetails WHERE Quantity = 10);
+
+The above statement returns TRUE if it finds ANY record in the OrderDetails table where the Quantity is equal to 10.
+
+Example `ANY`:
+
+	SELECT ProductName
+	FROM Products
+	WHERE ProductID = ANY 
+	(SELECT ProductID FROM OrderDetails WHERE Quantity > 99);	
+
+Again the above statement will return TRUE if it finds ANY records in the OrderDetails table where the Quantity is greater than 99.
+
+
+Example `ALL`:
+
+	SELECT ProductName
+	FROM Products
+	WHERE ProductID = ALL
+	(SELECT ProductID FROM OrderDetails WHERE Quantity = 10);
+
+
+Will this statement return TRUE or FALSE ?? 
+It will return FALSE since the `ALL` operator requires that all of the subquery values meet the condition.
+Hence zero records will be displayed.
+
+
+
 ### Select Into Statement
 
+`SELECT INTO` statement basically copies data from one table into a new table.
+
+
+Syntax of Copying all columns into a table:
+
+	SELECT * 
+	INTO NewTable [External DB]
+	FROM OldTable
+	WHERE condition;
+
+Syntax of Copying some columns into a table:
+
+	SELECT Columns_name(s)
+	INTO NewTable [External DB]
+	FROM OldTable
+	WHERE condition;
+
+The new table will be created with the column-names and typed defined in the old table.
+Should you want to give new names to the columns in the new table use alias `AS`.
+
+
+Example:
+
+	SELECT * INTO CustomersBackup2017
+	FROM Customers;
+
+We took backup of the Customers table in the above example.
+
+Example:
+
+	SELECT * INTO CustomersBackup2017 IN 'Backup.mdb'
+	FROM Customers;
+
+In the above example we used the `IN` clause to copy the table into another database.
+
+
+Example:
+
+	SELECT CustomerName, ContactName INTO CustomersBackup2017
+	FROM Customers;
+
+Just like the previous example but here we copied only a few columns not all of them.
+
+
+Example:
+
+	SELECT * INTO CustomersGermany
+	FROM Customers
+	WHERE Country = 'Germany';
+
+Here we created a table with customers from a particular country.
+
+Example:
+
+	SELECT Customers.CustomerName, Orders.OrderID
+	INTO CustomersOrderBackup2017
+	FROM Customers
+	LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID;
+
+In the above example we used `LEFT JOIN` to copy data from different tables into a new table.
+
+
+Example:
+
+	SELECT * INTO newtable
+	FROM oldtable
+	WHERE 1 = 0;
+
+This is an interesting example where in we created a new empty table using the schema of an old table.
+We did this by using the `WHERE` clause that causes to return no data.
+
+
 ### Insert Into Select Statement
+
+
 
 ### Case Statement
 
@@ -1027,7 +1267,7 @@ Again in the above example only distinct cities will be displayed from Germany. 
 ### Hosting
 
 ### Data Types
-	<
+	
 <!-- LICENSE -->
 ## License
 
