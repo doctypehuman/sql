@@ -107,7 +107,6 @@
 	<ul>
 	<li><a href="#Stored-Procedure">Stored Procedure</a></li>
 	<li><a href="#Comments">Comments</a></li>
-	<li><a href="#Operators">Operators</a></li>
 	</ul>
     <li><a href="#Module-8">Module 8</a></li>
 	<ul>
@@ -1210,21 +1209,220 @@ We did this by using the `WHERE` clause that causes to return no data.
 
 ### Insert Into Select Statement
 
+The `INSERT INTO SELECT` statement copies data and inserts it into another existing table.
+
+* `INSERT INTO SELECT` statement requires that data types in the source match the target table
+
+*  The existing records of the target table remain unaffected.
+
+ 
+Syntax of Copying all columns into a table:
+
+	INSERT INTO TABLE_2 
+	SELECT * FROM TABLE_1
+	WHERE condition;
+
+Syntax of Copying some columns into a table:
+
+	INSERT INTO TABLE_2 (column1, column2, column3, ...)
+	SELECT column1, column2, column3, ...
+	FROM TABLE_1
+	WHERE condition;
+	
+
+Example:
+
+	INSERT INTO Customers (CustomerName, City, Country)
+	SELECT SupplierName, City, Country 
+	FROM Suppliers;
+	
+The above statement copies Suppliers into Customers. Columns that do not contain data will have NULL.
+
+
+Example:
+
+	INSERT INTO Customers (CustomerName, City, Country)
+	SELECT SupplierName, City, Country 
+	FROM Suppliers
+	WHERE Country='Germany';
+
+The above statment is similar to the earlier example, only here we have used a condition.
 
 
 ### Case Statement
 
+The `CASE` statement in SQL functions like the `IF-THEN-ELSE` statement in other programming languages.
+The `CASE` statement will go through conditions and returns a value when the first condition is met.
+Once a condition is true it will stop reading and return the result.
+If no condition is true, it returns the value from the ELSE clause.
+
+
+Syntax:
+
+	CASE
+    	WHEN condition1 THEN result1
+    	WHEN condition2 THEN result2
+    	WHEN conditionN THEN resultN
+    	ELSE result
+	END;
+
+
+Example:
+
+	SELECT OrderID, Quantity,
+	CASE
+    	WHEN Quantity > 30 THEN 'The quantity is greater than 30'
+    	WHEN Quantity = 30 THEN 'The quantity is 30'
+    	ELSE 'The quantity is under 30'
+	END AS QuantityText
+	FROM OrderDetails;
+
+The above statement goes through conditions and return a value when the first condition is met.
+
+
+Example:
+
+	SELECT CustomerName, City, Country
+	FROM Customers
+	ORDER BY
+	(CASE
+    	WHEN City IS NULL THEN Country
+    	ELSE City
+	END);
+
+In the above statement SQL will order by City. However if the value of City is NULL it will order by Country.
+
+
 ### Null Functions
 
+There can be times when  we run a SQL statement where in the value of a column is NULL and because of that the statement will not return any record.
+Suppose in the Products table the column UnitsOnOrder has some null values. Here if some values are null in UnitsOnOrder the result will be null.
+
+ 
+	SELECT ProductName, UnitPrice * (UnitsInStock + UnitsOnOrder)
+	FROM Products;
+
+
+In order to safegaurd statements from the above error Null Functions are used. Different databases use different null functions.
+
+
+MySql server uses `IFNULL()` which allows us to return an alternative value if an expression is null.
+
+	SELECT ProductName, UnitPrice * (UnitsInStock + IFNULL(UnitsOnOrder, 0))
+	FROM Products;
+
+SQL server uses `ISNULL()` 
+
+	SELECT ProductName, UnitPrice * (UnitsInStock + ISNULL(UnitsOnOrder, 0))
+	FROM Products;
+
+
+ORACEL server uses `NVL()`
+
+	SELECT ProductName, UnitPrice * (UnitsInStock + NVL(UnitsOnOrder, 0))
+	FROM Products;
+
+
+
 <!-- Module 7 -->
-### Module 7
+
+## Module 7
+
+
+Here we will look into Stored Procedures, how to use comments and some more operators.
+
 
 ### Stored Procedure
 
+A stored procedure is a prepared SQL code that is saved and can be reused repeatedly. If there is a query that we repeat often, we can save it to be executed later.
+Parameters can also be passed to a stored procedure, so that a stored procedure can act based on the parameter value(s) that is/are passed.
+
+Stored Procedure Syntax:
+
+	CREATE PROCEDURE procedure_name
+	AS
+	sql_statement
+	GO;
+
+Executing Stored Procedure:
+
+	EXEC procedure_name;
+
+
+Example:
+
+Creation:
+
+	CREATE PROCEDURE SelectAllCustomers
+	AS
+	SELECT * FROM Customers
+	GO;
+
+Execution:
+
+	EXEC SelectAllCustomers;
+
+
+
+Example Stored Procedure with one parameter:
+
+Creation:
+
+	CREATE PROCEDURE SelectAllCustomers @City nvarchar(30)
+	AS
+	SELECT * FROM Customers
+	WHERE City = @City
+	GO;
+
+Execution:
+
+	EXEC SelectAllCustomers @City='Berlin';
+
+
+Example Stored Procedure with multiple parameters:
+
+Creation:
+
+	CREATE PROCEDURE SelectAllCustomers @City nvarchar(30), @PostalCode int(6)
+	AS
+	SELECT * FROM Customers
+	WHERE City = @City AND PostalCode = @PostalCode
+	GO;
+
+Execution:
+
+	EXEC SelectAllCustomers @City='Berlin', PostalCode=123456
+
+
+As you would have noticed, while using parameters we must assign the data types as well.
+
+
+
 ### Comments
 
-### Operators
-	
+Comments are used to explain certain sections of code and are not executed when the query is run.
+
+* Single Line Comments
+
+In SQL single line comments start with --. It will comment all the words followed by it till the end of the line.
+
+Example:
+
+	SELECT * FROM Customers -- selects all columns of all records from the table Customers
+
+
+* Multi Line Comments
+
+In SQL multi line comments start with /\* and end with \*/
+
+Example:
+
+	/*Select all the columns
+	of all the records
+	in the Customers table:*/
+	SELECT * FROM Customers;
+
+
 
 <!-- Module 8 -->
 
