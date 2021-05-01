@@ -51,14 +51,19 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li>
-	<a href="#module-1">Module 1</a>
+    <li><a href="#module-1">Module 1</a></li>
 	<ul>
 	<li><a href="#introduction-to-sql">Introduction To SQL</a></li>
 	<li><a href="#Syntax">Syntax</a></li>
 	<li><a href="#Select">Select</a></li>
 	<li><a href="#Select-Distinct">Select Distinct</a></li>
 	</ul>
+    <li><a href="#module-2">Module 2</a></li>
+	<ul>
+	<li><a href="#Where-Clause">Where Clause</a></li>
+	<li><a href="#And-Or-Not">And Or Not</a></li>
+	<li><a href="#Order-By">Order By</a></li>
+	</ul>	
     <li><a href="#Module-3">Module 3</a></li>
 	<ul>
 	<li><a href="#Insert-Into-Statement">Insert Into Statement</a></li>
