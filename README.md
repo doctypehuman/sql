@@ -113,6 +113,7 @@
 	<li><a href="#Drop-Database">Drop Database</a></li>
 	<li><a href="#Backup-Database">Backup Database</a></li>
 	<li><a href="#Create-Table">Create Table</a></li>
+	<li><a href="#Drop-Table">Drop Table</a></li>
 	<li><a href="#Alter-Table">Alter Table</a></li>
 	<li><a href="#Constraints">Constraints</a></li>
 	<li><a href="#Not-Null-Constraints">Not Null Constraints</a></li>
@@ -1427,15 +1428,139 @@ Example:
 
 ## Module 8
 
+Congratulations on making it this far ! Well done !! We are almost there now. It's the home stretch and you can do this !! 
+
+
 ### Create Database
+
+In order to create a database the statement `CREATE DATABASE` is used. Users with admin access can create databases.
+Once created you can verify the creation with `SHOW DATABASES`
+
+Syntax:
+
+	CREATE DATABASE testDB;
+
+Verify:
+
+	SHOW DATABASES;
+
 
 ### Drop Database
 
+Deleting a database is done by the statemtn `DROP DATABASE`. This can be done only with admin privilege.
+
+Syntax:
+
+	DRP DATABASE testDB;
+
+Once deleted, the database cannot be recovered.
+
+
 ### Backup Database
+
+Backing up a database is done by the statement `BACKUP DATABASE`
+
+
+Syntax:
+
+	BACKUP DATABASE testDB
+	TO DISK = 'file_path';
+
+Best practice is to not back up the database on the same disk on which the database is.
+
+Along with `BACKUP DATABASE` exists an option to backup only those parts of the database that have been modified since the last back up.
+That can be done by using the `WITH DIFFERENTIAL` option 
+
+Syntax:
+
+	BACKUP DATABASE testDB
+	TO DISK = 'file_path'
+	WITH DIFFERENTIAL;
+
 
 ### Create Table
 
+As you know by now that within a database several tables can exist. To create a table the statement `CREATE TABLE` is used.
+When creating a table we need to specify the name of the columns and the data type of those columns.
+
+Syntax:
+
+	CREATE TABLE test_table (
+	column1 data type
+	column2 data type
+	columnN data type
+	);
+
+Example:
+
+	CREATE TABLE Persons (
+  	PersonID int,
+    	LastName varchar(255),
+    	FirstName varchar(255),
+    	Address varchar(255),
+   	City varchar(255)
+	);
+
+The PersonID column is of type int and will hold an integer.
+The LastName, FirstName, Address, and City columns are of type varchar and will hold characters, 
+and the maximum length for these fields is 255 characters.
+
+This wil create an empty table. To populate the table we can use `INSERT INTO` statement.
+
+* Creating a table from another table
+
+We can use the `CREATE TABLE` to create a new table by copying an existing table.
+
+	CREATE TABLE new_table_name AS
+    	SELECT column1, column2,...
+   	FROM existing_table_name
+  	WHERE ....;
+
+
+
+
+### Drop Table
+
+To delete a table we need to use the statement `DROP TABLE`. Be carefule when using this statement since it will result
+in complete loss of all the information stored in the table.
+
+Syntax:
+
+	DROP TABLE test_table;
+
+#### Truncate Table
+
+Sometimes we might not want to delete the complete table but just the content in it. 
+In such a scenario we can use the `TRUNCATE TABLE` statement.
+
+Syntax:
+
+	TRUNCATE TABLE test_table;
+
+
 ### Alter Table
+
+The `ALTER TABLE` statement is used to add, remove or modify existing columns in a table.
+It is also used to add or remove _constraints_ on a table.
+When adding a column, the data type needs to be specified.
+
+
+Syntax:
+	ALTER TABLE table_name
+	ADD column_name datatype;
+	 
+
+In the above syntax example the option `ADD` can be replaced with `DROP COLUMN` to delete a column
+or can be replaced with `MODIFY` or `ALTER` depending on the type of databse to modify the column.
+
+For SQL SERVER and MS ACCESS `ALTER COLUMN` is used and for MYSQL and ORACEL servers `MODIFY COLUMN` is used.
+Modification are generally used to change the data type of the column.
+
+Example:
+
+	ALTER TABLE Persons
+	ALTER COLUMN DateOfBirth year;
+
 
 ### Constraints
 
