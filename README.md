@@ -1710,12 +1710,12 @@ MYSQL:
 
 SQL Server / Oracle / MS Access:
 
-	CREATE TABLE Persons (
-    	ID int NOT NULL PRIMARY KEY,
-  	LastName varchar(255) NOT NULL,
-  	FirstName varchar(255),
-   	Age int
-	);
+		CREATE TABLE Persons (
+    		ID int NOT NULL PRIMARY KEY,
+  		LastName varchar(255) NOT NULL,
+  		FirstName varchar(255),
+   		Age int
+		);
 
 Example Alter Table:
 
@@ -1726,13 +1726,13 @@ Example Alter Table:
 Example of naming a key and assigning multiple columns while creating a table:
 
 
-	CREATE TABLE Persons (
-    	ID int NOT NULL,
-   	LastName varchar(255) NOT NULL,
-    	FirstName varchar(255),
-    	Age int,
-    	CONSTRAINT PK_Person PRIMARY KEY (ID,LastName)
-	);
+		CREATE TABLE Persons (
+    		ID int NOT NULL,
+   		LastName varchar(255) NOT NULL,
+   	 	FirstName varchar(255),
+    		Age int,
+    		CONSTRAINT PK_Person PRIMARY KEY (ID,LastName)
+		);
 
 
 In the above example the name of the `PRIMARY KEY` is PK\_Person and the value of the key is made up of two columns i.e ID and LastName.
