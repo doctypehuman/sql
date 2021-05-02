@@ -147,7 +147,7 @@
 <!-- GETTING STARTED -->
 ## Getting Started
 
-You can use this project to learn SQL either on a MYSQL server or a POSTGRESQL server. The database that is used as an example is Northwinds Databse. This is an example database that Microsoft created for tutorials. It is available on GitHub [here.](https://github.com/Microsoft/sql-server-samples/tree/master/samples/databases/northwind-pubs)
+You can use this project to learn SQL either on a MYSQL server or a POSTGRESQL server. The database that is used as an example is Northwinds Database. This is an example database that Microsoft created for tutorials. It is available on GitHub [here.](https://github.com/Microsoft/sql-server-samples/tree/master/samples/databases/northwind-pubs)
 
 For a POSTGRESQL server the database that can be used is the DVD Rental Database that can be found [here.](https://sp.postgresqltutorial.com/wp-content/uploads/2019/05/dvdrental.zip)
 
@@ -241,7 +241,7 @@ Semicolons are used to differentiate multiple SQL statements.
 
 ### Select
 
-Extracting data is the first step and is an important step in databasae management. We need to use the *SELECT* statement to extract data. 
+Extracting data is the first step and is an important step in database management. We need to use the *SELECT* statement to extract data. 
 
 The syntax for a simple Select statement is:
 
@@ -289,7 +289,7 @@ WHERE clause is used to filter the results. As the name suggests it will help us
 		SELECT * FROM Customer
 		WHERE Country='Denmark';
 
-The above statement shoudl give you an idea of the syntax. It goes like this:
+The above statement should give you an idea of the syntax. It goes like this:
 
 		SELECT Col_1,Col_2,...Col_N
 		FROM TABLE_NAME
@@ -297,7 +297,7 @@ The above statement shoudl give you an idea of the syntax. It goes like this:
 
 The WHERE clause is used not only with SELECT statement but also with other statements such as UPDATE,DELETE and many other... you will see soon enough. 
 
-*Also please keep in mind that when using the WHERE clause if the condition is in text you need to use ' ' quotes. If the condition is in digita no quotes are required.*
+*Also please keep in mind that when using the WHERE clause if the condition is in text you need to use ' ' quotes. If the condition is in digits no quotes are required.*
 
 
 
@@ -317,7 +317,7 @@ You saw the operator = being used earlier in the WHERE clause. There are other o
 
 LIKE :This operator searches for a pattern. We will look at this in detail a little later
 
-BETWEEN :As the name suggests, between a certiain range.We will look at this in detail a little later
+BETWEEN :As the name suggests, between a certain range.We will look at this in detail a little later
 
 IN :To specify multiple possible values for a column. We will look at this in detail a little later
 
@@ -362,7 +362,7 @@ Usage:
 #### Combining AND OR NOT
 
 
-Sometimes there can be a need to combine these various operators to finetune our results. What if we wanted the list of customers from Germany but only those that are from either Berlin or Munich ? We need to use parenthesis to do that. 
+Sometimes there can be a need to combine these various operators to fine-tune our results. What if we wanted the list of customers from Germany but only those that are from either Berlin or Munich ? We need to use parenthesis to do that. 
 
 
 		SELECT * FROM Customers
@@ -476,7 +476,7 @@ Syntax:
 		DELETE FROM TABLE_NAME
 		WHERE condition;
 
-To delete all records from a table without deleting the table you can use the below statement. This means that the table structre, attributes and index will remain intact.
+To delete all records from a table without deleting the table you can use the below statement. This means that the table structure, attributes and index will remain intact.
 
 		DELETE FROM TABLE_NAME;
 
@@ -510,7 +510,7 @@ Example
 		FROM Customers
 		Where Country='Germany';
 
-*Please note that not all databses accept SELECT TOP*
+*Please note that not all databases accept SELECT TOP*
 
 For MYSQL `LIMIT` is used and the above example will look something like this
 
@@ -568,7 +568,7 @@ Again as the name suggests these functions provide the count, average and sum va
 
 ### Like Operator
 
-The `Like` operator is used with the `WHERE` clause to search for a particular pattern in a column. A pattern is formed by using wildcards. The most common wildcards that are used with the `Like` operator are *%* and *_* The % sign represents zero,one or multiple characters. The _ represents a single character.
+The `Like` operator is used with the `WHERE` clause to search for a particular pattern in a column. A pattern is formed by using wild cards. The most common wild cards that are used with the `Like` operator are *%* and *_* The % sign represents zero,one or multiple characters. The _ represents a single character.
 
 MSAccess uses an asterisk instead of the percent sign and a question mark in place of the underscore.
 
@@ -603,10 +603,10 @@ This example will return all records where the country's name does not begin wit
 
 ### Wildcards
 
-A wildcard character is used to substitute one or more characters in a string. You already have gotten a small brief above. When used with the `WHERE` clause we can search for a 
+A wild card character is used to substitute one or more characters in a string. You already have gotten a small brief above. When used with the `WHERE` clause we can search for a 
 specified pattern in a column. 
 
-Some commonly used wildcard characters in SQL are:
+Some commonly used wild card characters in SQL are:
 
  \[\] represents any single character within the brackets. h\[oa\]t  will search for hot and hat.
 
@@ -1564,13 +1564,209 @@ Example:
 
 ### Constraints
 
+SQL constraints are used to specify rules for the data in a table.
+
+Constraints are used to limit the type of data that can go into a table. 
+This ensures the accuracy and reliability of the data in the table. 
+If there is any violation between the constraint and the data action, the action is aborted.
+
+Constraints can be column level or table level. 
+Column level constraints apply to a column, and table level constraints apply to the whole table.
+
+Constraints can be applied to a table while creating it or while modifying it.
+
+
+Syntax:
+
+	CREATE TABLE table_name (
+    	column1 datatype constraint,
+    	column2 datatype constraint,
+    	column3 datatype constraint,
+	);
+
+
 ### Not Null Constraints
+
+By default, a column can hold NULL values.
+
+The `NOT NULL` constraint enforces a column to NOT accept NULL values.
+
+This enforces a field to always contain a value, which means that you cannot insert a new record, or update a record without adding a value to this field.
+
+
+Example while creating a table:
+
+	CREATE TABLE Persons (
+    	ID int NOT NULL,
+    	LastName varchar(255) NOT NULL,
+    	FirstName varchar(255) NOT NULL,
+    	Age int
+	);
+
+
+Example while modifying a table:
+
+	ALTER TABLE Persons
+	MODIFY Age int NOT NULL;
+
 
 ### Unique Constraints
 
+The `UNIQUE` constraint ensures that all values in a column are different.
+
+Both the `UNIQUE` and `PRIMARY KEY` constraints provide a guarantee for uniqueness for a column or set of columns.
+
+A `PRIMARY KEY` constraint automatically has a `UNIQUE` constraint.
+
+However, you can have many `UNIQUE` constraints per table, but only one `PRIMARY KEY` constraint per table.
+
+
+Example while creating table for SQL,ORACLE, MS ACCESS:
+
+	CREATE TABLE Persons (
+    	ID int NOT NULL UNIQUE,
+    	LastName varchar(255) NOT NULL,
+    	FirstName varchar(255),
+    	Age int
+	);
+
+For MYSQL:
+
+	CREATE TABLE Persons (
+    	ID int NOT NULL,
+    	LastName varchar(255) NOT NULL,
+    	FirstName varchar(255),
+    	Age int,
+	UNIQUE (ID)
+	);
+
+
+To name a `UNIQUE` constraint and to define it on multiple columns:
+
+	CREATE TABLE Persons (
+    	ID int NOT NULL,
+    	LastName varchar(255) NOT NULL,
+    	FirstName varchar(255),
+    	Age int,
+    	CONSTRAINT UC_Person UNIQUE (ID,LastName)
+	);
+
+
+In the above example we have named the constraint UC_Person and it is applicable on columns ID and LastName.
+Also the above example is valid for MYSQL/SQL/ORACEL/MS ACCESS servers.
+
+
+Example while modifying a table for SQL,ORACEL,MS ACCESS:
+
+	ALTER TABLE Persons
+	ADD UNIQUE (ID);
+	
+Here we added a `UNIQUE` constraint on the column ID after the table was created. 
+
+
+If we want to name a `UNIQUE` constraint and to define it on multiple columns:
+
+	ALTER TABLE Persons
+	ADD CONSTRAINT UC_Person UNIQUE (ID,LastName);
+
+
+Example of deleting `UNIQUE` constraint:
+
+MYSQL:
+
+	ALTER TABLE Persons
+	DROP INDEX UC_Person;
+
+
+ORACLE/SQL/MS ACCESS:
+
+	ALTER TABLE Persons
+	DROP CONSTRAINT UC_Person;
+
+
+
 ### Primary Key Constraint
 
+The PRIMARY KEY constraint uniquely identifies each record in a table.
+
+Primary keys must contain UNIQUE values, and cannot contain NULL values.
+
+A table can have only ONE primary key; and in the table, this primary key can consist of single or multiple columns (fields).
+
+
+Example Create Table:
+
+
+MYSQL:
+	
+	CREATE TABLE Persons (
+  	ID int NOT NULL,
+ 	LastName varchar(255) NOT NULL,
+ 	FirstName varchar(255),
+ 	Age int,
+	PRIMARY KEY (ID)
+	);
+
+
+SQL Server / Oracle / MS Access:
+
+	CREATE TABLE Persons (
+    	ID int NOT NULL PRIMARY KEY,
+  	LastName varchar(255) NOT NULL,
+  	FirstName varchar(255),
+   	Age int
+	);
+
+Example Alter Table:
+
+	ALTER TABLE Persons
+	ADD PRIMARY KEY (ID);
+
+
+Example of naming a key and assigning multiple columns while creating a table:
+
+
+	CREATE TABLE Persons (
+    	ID int NOT NULL,
+   	LastName varchar(255) NOT NULL,
+    	FirstName varchar(255),
+    	Age int,
+    	CONSTRAINT PK_Person PRIMARY KEY (ID,LastName)
+	);
+
+
+In the above example the name of the `PRIMARY KEY` is PK\_Person and the value of the key is made up of two columns i.e ID and LastName.
+
+
+The same example but while altering a table:
+
+	ALTER TABLE Persons
+	ADD CONSTRAINT PK_Person PRIMARY KEY (ID,LastName);
+
+_When we use `ALTER TABLE` to add a primary key, the columns that are to be assigned must already have been declared to not contain NULL values_
+
+
+Deleteing a `PRIMARY KEY`:
+
+
+MYSQL:
+
+	ALTER TABLE Persons
+	DROP PRIMARY KEY;
+
+
+
+SQL/ORACLE/MS ACCESS:
+
+	ALTER TABLE Persons
+	DROP CONSTRAINT PK_Person;
+
+
 ### Foreign Key Constraint
+
+
+
+
 
 ### Check Constraint
 
@@ -1638,4 +1834,4 @@ Project Link: [https://github.com/your_username/repo_name](https://github.com/yo
 [license-url]: https://github.com/doctypehuman/sql/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/
-roduct-screenshot]: images/screenshot.png
+oduct-screenshot]: images/screenshot.png
