@@ -1764,18 +1764,334 @@ SQL/ORACLE/MS ACCESS:
 
 ### Foreign Key Constraint
 
+A `FOREIGN KEY` is a key used to link two tables together.
+A `FOREIGN KEY` is a field (or collection of fields) in one table that refers to the `PRIMARY KEY` in another table.
+The table containing the foreign key is called the child table, and the table containing the candidate key is called the referenced or parent table.
 
+The `FOREIGN KEY` constraint is used to prevent actions that would destroy links between tables.
+The `FOREIGN KEY` constraint also prevents invalid data from being inserted into the foreign key column, because it has to be one of the values contained in the table it points to.
+
+
+
+Syntax `CREATE TABLE`:
+
+MYSQL:
+
+	CREATE TABLE Orders (
+    	OrderID int NOT NULL,
+    	OrderNumber int NOT NULL,
+    	PersonID int,
+    	PRIMARY KEY (OrderID),
+    	FOREIGN KEY (PersonID) REFERENCES Persons(PersonID)
+	);
+
+
+
+
+SQL/ORACLE/MS ACCESS:
+
+
+	CREATE TABLE Orders (
+    	OrderID int NOT NULL PRIMARY KEY,
+    	OrderNumber int NOT NULL,
+    	PersonID int FOREIGN KEY REFERENCES Persons(PersonID)
+	);
+
+
+In the above example SQL creates a `FOREIGN KEY` on the "PersonID" column when the "Orders" table is created
+
+
+
+Syntax `ALTER TABLE`:
+
+To create a new `FOREIGN KEY`
+
+	ALTER TABLE Orders
+	ADD FOREIGN KEY (PersonID) REFERENCES Persons(PersonID);
+
+
+To allow naming of a `FOREIGN KEY` constraint and for defining it on multiple columns:
+
+	ALTER TABLE Orders
+	ADD CONSTRAINT FK_PersonOrder
+	FOREIGN KEY (PersonID) REFERENCES Persons(PersonID);
+
+
+
+Deleting a `FOREIGN KEY`:
+
+	
+MYSQL:
+
+	ALTER TABLE Orders
+	DROP FOREIGN KEY FK_PersonOrder;
+
+
+
+SQL/ORACLE/MS ACCESS:
+
+	ALTER TABLE Orders
+	DROP CONSTRAINT FK_PersonOrder;
 
 
 
 ### Check Constraint
 
+
+The `CHECK` constraint is used to limit the value range that can be placed in a column.
+If we define a `CHECK` constraint on a single column it allows only certain values for this column.
+If we define a `CHECK` constraint on a table it can limit the values in certain columns based on values in other columns in the row.
+
+
+
+Syntax `CREATE TABLE`:
+
+
+MYSQL:
+
+	CREATE TABLE Persons (
+   	ID int NOT NULL,
+    	LastName varchar(255) NOT NULL,
+   	FirstName varchar(255),
+  	Age int,
+ 	CHECK (Age>=18)
+	);
+
+
+
+SQL/ORACLE/MS ACCESS:
+
+
+	CREATE TABLE Persons (
+    	ID int NOT NULL,
+    	LastName varchar(255) NOT NULL,
+    	FirstName varchar(255),
+    	Age int CHECK (Age>=18)
+	);
+
+
+In the above example we set up a check for the user to be of either 18 or more years of age.
+
+To allow naming of `CHECK` constraint and assigning it multiple columns while creating a table:
+
+
+	CREATE TABLE Persons (
+    	ID int NOT NULL,
+    	LastName varchar(255) NOT NULL,
+    	FirstName varchar(255),
+    	Age int,
+    	City varchar(255),
+    	CONSTRAINT CHK_Person CHECK (Age>=18 AND City='Sandnes')
+	);
+
+
+
+The above format works for all databases.
+
+
+Syntax `ALTER TABLE`:
+
+
+	ALTER TABLE Persons
+	ADD CHECK (Age>=18);
+
+
+
+To allow naming of `CHECK` constraint and assigning it multiple columns while altering a table:
+
+
+	ALTER TABLE Persons
+	ADD CONSTRAINT CHK_PersonAge CHECK (Age>=18 AND City='Sandnes');
+
+
+Deleting  `CHECK`:
+
+
+MYSQL:
+
+	ALTER TABLE Persons
+	DROP CHECK CHK_PersonAge;
+
+
+SQL/ORACLE/MS ACCESS:
+
+
+	ALTER TABLE Persons
+	DROP CONSTRAINT CHK_PersonAge;	
+
+
+
+
 ### Default Constraint
+
+The `DEFAULT` constraint is used to provide a default value for a column.
+The default value will be added to all new records IF no other value is specified.
+
+
+
+Syntax `CREATE TABLE`:
+
+	CREATE TABLE Persons (
+    	ID int NOT NULL,
+    	LastName varchar(255) NOT NULL,
+    	FirstName varchar(255),
+    	Age int,
+    	City varchar(255) DEFAULT 'Humpolec'
+	);
+
+
+Here we specified the default city to be Humpolec.
+
+It can also be used along with function like `GETDATE()`.
+
+
+	CREATE TABLE Orders (
+    	ID int NOT NULL,
+    	OrderNumber int NOT NULL,
+    	OrderDate date DEFAULT GETDATE()
+	);
+
+Syntax `ALTER TABLE`:
+
+
+MYSQL:
+
+	ALTER TABLE Persons
+	ALTER City SET DEFAULT 'Humpolec';
+
+SQL SERVER:
+
+	ALTER TABLE Persons
+	ADD CONSTRAINT df_City
+	DEFAULT 'Brno' FOR City;
+
+MSAcess:
+
+	ALTER TABLE Persons
+	ALTER COLUMN City SET DEFAULT 'Pilzen';
+
+
+ORACEL:
+
+	ALTER TABLE Persons
+	MODIFY City DEFAULT 'Ostrava';
+
+
+Deleting `DEFAULT`:
+
+
+MYSQL:
+
+	ALTER TABLE Persons
+	ALTER City DROP DEFAULT;
+
+
+SQL/ORACLE/MS ACCESS:
+
+
+	ALTER TABLE Persons
+	ALTER COLUMN City DROP DEFAULT;
+
 
 ### Create Index Statement
 
+
+The `CREATE INDEX` statement is used to create indexes in tables.
+Indexes are used to retrieve data from the database more quickly than otherwise.
+The users cannot see the indexes, they are only used to speed up searches/queries.
+
+Consider an Index like an auto-filter that can be referred to.
+
+Updating a table with indexes takes more time than updating a table without (because the indexes also need an update).
+Hence it is wise to  only create indexes on columns that will be frequently searched against.
+
+
+There are two types of Indexes. Simple and Unique. Unique index does not allow duplicate values.
+
+
+Syntax Creation:
+		
+		CREATE INDEX index_name
+		ON table_name (column1, column2, ...);
+	
+Creation of Unique Index:
+
+		CREATE UNIQUE INDEX index_name
+		ON table_name (column1, column2, ...);
+
+
+The syntax for creation of index varies for different databases and unfortunately I do not have all of them listed. 
+Please check documentation before proceeding.
+
+
+Example:
+
+	CREATE INDEX idx_pname
+	ON Persons (LastName, FirstName);	
+
+
+Syntax Deletion:
+
+MYSQL:
+	ALTER TABLE table_name
+	DROP INDEX index_name;
+
+ORACLE:
+
+	DROP INDEX index_name;
+
+SQL:
+
+	DROP INDEX table_name.index_name;
+
+
+
 ### Auto Increment Field
 
+Auto-increment allows a unique number to be generated automatically when a new record is inserted into a table.
+Often this is the primary key field that we would like to be created automatically every time a new record is inserted.
+
+
+Syntax:
+
+MYSQL:
+
+	CREATE TABLE Persons (
+    	Personid int NOT NULL AUTO_INCREMENT,
+    	LastName varchar(255) NOT NULL,
+    	FirstName varchar(255),
+    	Age int,
+    	PRIMARY KEY (Personid)
+	);
+
+
+MYSQL uses the keyword `AUTO_INCREMENT`.
+The default value starting value for auto increment is 1. To change it to a custom number use the below statement.
+
+
+	ALTER TABLE Persons AUTO_INCREMENT=100;
+
+
+Once this is done we do not have to specify the value for this column during insertion of data.
+
+	
+SQL SERVER:
+
+	CREATE TABLE Persons (
+    	Personid int IDENTITY(1,1) PRIMARY KEY,
+    	LastName varchar(255) NOT NULL,
+    	FirstName varchar(255),
+    	Age int
+	);
+
+
+SQL Server uses the keyword `IDENTITY` to achieve the same effect. It also offers us to assign the starting value and the value by which the increment will happen. 
+In the above example both values have been set to 1.
+
+
+ORACLE:
+
+The code for ORACLE is not so simple. We will have to create an auto-increment field with the sequence object.
 ### Working With Dates
 
 ### Views
