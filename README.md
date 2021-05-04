@@ -2091,17 +2091,155 @@ In the above example both values have been set to 1.
 
 ORACLE:
 
-The code for ORACLE is not so simple. We will have to create an auto-increment field with the sequence object.
+The code for ORACLE is not so simple. We will have to create an auto-increment field with the sequence object. 
+This sequence object will generate a number sequence.
+
+Syntax:
+
+	CREATE SEQUENCE seq_person
+	MINVALUE 1
+	START WITH 1
+I	NCREMENT BY 1
+	CACHE 10;
+
+
+The code above creates a sequence object called seq_person, that starts with 1 and will increment by 1. 
+It will also cache up to 10 values for performance. 
+The cache option specifies how many sequence values will be stored in memory for faster access.
+
+
+To insert a new record into the "Persons" table, we will have to use the `nextval` function (this function retrieves the next value from seq_person sequence)
+
+
+	INSERT INTO Persons (Personid,FirstName,LastName)
+	VALUES (seq_person.nextval,'Doctype','Human');
+
+
+The SQL statement above would insert a new record into the "Persons" table. The "Personid" column would be assigned the next number from the seq_person sequence. The "FirstName" column would be set to "Doctype" and the "LastName" column would be set to "Human".
+
+	
+
 ### Working With Dates
+
+The most important part about working with dates is to ensure the format of the date that we are putting in matches the format of the date column present in the database.
+
+To keep things simple we can avoid using the time portion in the format of the column.
+
+The basic Date Data Type format is YYYY-MM-DD
+
+We can retrieve data then using a simple statement like this:
+
+	SELECT * FROM Orders WHERE OrderDate='2008-11-11'
+
 
 ### Views
 
+In SQL, a view is a virtual table based on the result-set of an SQL statement.
+A view contains rows and columns, just like a real table. The fields in a view are fields from one or more real tables in the database.
+You can add SQL functions, `WHERE` , and `JOIN` statements to a view and present the data as if the data were coming from one single table.
+
+Syntax `CREATE VIEW`:
+
+
+	CREATE VIEW view_name AS
+	SELECT column1, column2, ...
+	FROM table_name
+	WHERE condition;
+
+
+Example:
+
+
+	CREATE VIEW [Brazil Customers] AS
+	SELECT CustomerName, ContactName
+	FROM Customers
+	WHERE Country = 'Brazil';
+
+
+And then to query the view:
+
+
+	SELECT * FROM [Brazil Customers];
+
+
+Another example with functions:
+
+
+	CREATE VIEW [Products Above Average Price] AS
+	SELECT ProductName, Price
+	FROM Products
+	WHERE Price > (SELECT AVG(Price) FROM Products);
+
+
+And then to query the view:
+
+	SELECT * FROM [Products Above Average Price];
+
+
+Syntax for updating a view:
+
+
+	CREATE OR REPLACE VIEW view_name AS
+	SELECT column1, column2, ...
+	FROM table_name
+	WHERE condition;
+
+
+The key word `CREATE OR REPLACE VIEW` is used to update a view.
+
+Example:
+
+	CREATE OR REPLACE VIEW [Brazil Customers] AS
+	SELECT CustomerName, ContactName, City
+	FROM Customers
+	WHERE Country = 'Brazil';
+
+
+In the above example we updated the Brazil Customers view to add the City column.
+
+
+Syntax for deleting a view:
+
+	DROP VIEW [Brazil Customers];
+
+
+
+
 ### Injection
+
+
+SQL Injection is a very common method used by hackers to poison a database. 
+What it does is, it presents a mailicious query that forces the database to share more than necessary information.
+
+It usually occurs when a user is requested for an input usually like a username or userid. Insted of putting the correct value,
+the user places a statement that forces the database engine to execute it resulting in data leaks.
+
+In order to protect the database from these attacks we can use SQL PARAMETERS. These parameters are assigned while writing server side code using languages like PHP, ASP.NET etc.
+
 
 ### Hosting
 
+If we need our web site to be able to store and retrieve data the web server needs to have access to database system that uses the SQL language.
+
+The most common SQL hosting databases are MySQL, ORACLE, MS SQL and MS Access.
+
+
+
 ### Data Types
 	
+
+The data type of a column defines what value the column can hold: integer, character, money, date and time, binary, and so on.
+
+Each column in a database table is required to have a name and a data type.
+
+The data type is a guideline for SQL to understand what type of data is expected inside of each column, and it also identifies how SQL will interact with the stored data.
+
+It is always wise to check the official documentation for data types since they might have different names in different databases. And even if the names are the same the size and other details might differ.
+
+Since this list is extensive I will share a few links in the section [Further Reading](##Further-Reading)
+
+
+
 <!-- LICENSE -->
 ## License
 
@@ -2109,8 +2247,8 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 
 
-<!-- CONTACT -->
-## Contact
+<!-- Further Reading -->
+## Further Reading
 
 Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
 
